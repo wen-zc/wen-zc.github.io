@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +7,16 @@
     <title>一对一视频通话</title>
     <style>
         body {
-            background-color: #eff293;
+           /* background-color: #eff293;*/
             margin-top: 15px;
             font-family: sans-serif;
             color: white;
+            background-size:cover;
         }
         video {
             
-            background: #eff293;
-            border: 1px solid gray;
+           /* background: #eff293; */
+            border: 1px solid #0072E3;
         }
         .page {
             position: relative;
@@ -25,34 +25,40 @@
             width: 500px;
             height: 500px;
         }
-        .copy{
+        #copy{
             font-color:blue;
-            font-size:50px;
+            font-size:60px;
+            position: absolute; 
+            bottom:0;
+            right: 40%;
         }
         #localVideo {
-            width: 400px;
-            height: 300px;
+            width: 490px;
+            height: 370px;
            border-radius: 130px;
-            /*overflow: hidden;
-             /*position: absolute; */
-            top: 15px;
-            right: 100px;
+            overflow: hidden;
+            position: absolute; 
+            top: 70px;
+            right:735px;
         }
         #remoteVideo {
-            width: 400px;
-            height: 300px;
+            width: 490px;
+            height: 370px;
+            top:70px;
+            right: 215px;
+            position: absolute;
             border-radius: 130px;
            
         }
    
     </style>
 </head>
-<body>
+<body background="http://chuantu.xyz/t6/703/1575901086x989499252.jpg" />
 <div class="image"></div>
 <div>
     <img src="https://wen-zc.github.io/gif/cat.gif" width="200px" height="200px" style="position: fixed; right:0; bottom:0" />
 </div>
-<div class="copy">一对一视频通话</div>
+<div id="copy" type="text">一对一视频通话</div>
 <video id="localVideo" autoplay muted></video>
 <video id="remoteVideo" autoplay></video>
 <script>
