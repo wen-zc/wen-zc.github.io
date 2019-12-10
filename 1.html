@@ -3,10 +3,10 @@
 <head>
     <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width£¬initial-scale=1.0">
+    <meta name="viewport" content="width=device-widthï¼Œinitial-scale=1.0">
 
     
-    <title>Ò»¶ÔÒ»ÊÓÆµÍ¨»°</title>
+    <title>ä¸€å¯¹ä¸€è§†é¢‘é€šè¯</title>
     <style>
         body {
            /* background-color: #eff293;*/
@@ -37,7 +37,7 @@
         #localVideo {
            float:left;
             width: 32%;
-            height: 60%;
+            height: 51%;
            border-radius: 130px;
             overflow: hidden;
             position: absolute; 
@@ -62,25 +62,25 @@
 <div>
     <img src="https://wen-zc.github.io/gif/cat.gif" width="200px" height="200px" style="position: fixed; right:0; bottom:0" />
 </div>
-<div id="copy" type="text">Ò»¶ÔÒ»ÊÓÆµÍ¨»°</div>
+<div id="copy" type="text">ä¸€å¯¹ä¸€è§†é¢‘é€šè¯</div>
 <video id="localVideo" autoplay muted></video>
 <video id="remoteVideo" autoplay></video>
 <script>
-   // ²úÉúËæ»úÊı
+   // äº§ç”Ÿéšæœºæ•°
 if (!location.hash) {
     location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
-// »ñÈ¡·¿¼äºÅ
+// è·å–æˆ¿é—´å·
 var roomHash = location.hash.substring(1);
  
-// ·ÅÖÃÄã×Ô¼ºµÄÆµµÀid, ÕâÊÇÎÒ×¢²áÁËScaleDrone ¹ÙÍøºó£¬´´½¨µÄchannel
-// ÄãÒ²¿ÉÒÔ×Ô¼º´´½¨
+// æ”¾ç½®ä½ è‡ªå·±çš„é¢‘é“id, è¿™æ˜¯æˆ‘æ³¨å†Œäº†ScaleDrone å®˜ç½‘åï¼Œåˆ›å»ºçš„channel
+// ä½ ä¹Ÿå¯ä»¥è‡ªå·±åˆ›å»º
 var drone = new ScaleDrone('87fYv4ncOoa0Cjne');
-// ·¿¼äÃû±ØĞëÒÔ 'observable-'¿ªÍ·
+// æˆ¿é—´åå¿…é¡»ä»¥ 'observable-'å¼€å¤´
 var roomName = 'observable-' + roomHash;
 var configuration = {
     iceServers: [{
-        urls: 'stun:stun.l.google.com:19302' // Ê¹ÓÃ¹È¸èµÄstun·şÎñ
+        urls: 'stun:stun.l.google.com:19302' // ä½¿ç”¨è°·æ­Œçš„stunæœåŠ¡
     }]
 };
  
@@ -100,18 +100,18 @@ drone.on('open', function(error){
         if (error) {onError(error);}
     });
  
-    // ÒÑ¾­Á´½Óµ½·¿¼äºó£¬¾Í»áÊÕµ½Ò»¸ö members Êı×é£¬´ú±í·¿¼äÀïµÄ³ÉÔ±
-    // ÕâÊ±ºòĞÅÁî·şÎñÒÑ¾­¾ÍĞ÷
+    // å·²ç»é“¾æ¥åˆ°æˆ¿é—´åï¼Œå°±ä¼šæ”¶åˆ°ä¸€ä¸ª members æ•°ç»„ï¼Œä»£è¡¨æˆ¿é—´é‡Œçš„æˆå‘˜
+    // è¿™æ—¶å€™ä¿¡ä»¤æœåŠ¡å·²ç»å°±ç»ª
     room.on('members', function(members){
         console.log('MEMBERS', members);
  
-        // Èç¹ûÄãÊÇµÚ¶ş¸öÁ´½Óµ½·¿¼äµÄÈË£¬¾Í»á´´½¨offer
+        // å¦‚æœä½ æ˜¯ç¬¬äºŒä¸ªé“¾æ¥åˆ°æˆ¿é—´çš„äººï¼Œå°±ä¼šåˆ›å»ºoffer
         var isOfferer = members.length === 2;
         startWebRTC(isOfferer);
     });
 });
  
-// Í¨¹ıScaledrone·¢ËÍĞÅÁîÏûÏ¢
+// é€šè¿‡Scaledroneå‘é€ä¿¡ä»¤æ¶ˆæ¯
 function sendMessage(message) {
     drone.publish({
         room: roomName,
@@ -122,58 +122,58 @@ function sendMessage(message) {
 function startWebRTC(isOfferer) {
     pc = new RTCPeerConnection(configuration);
  
-    // µ±±¾µØICE AgentĞèÒªÍ¨¹ıĞÅºÅ·şÎñÆ÷·¢ËÍĞÅÏ¢µ½ÆäËû¶ËÊ±
-    // »á´¥·¢icecandidateÊÂ¼ş»Øµ÷
+    // å½“æœ¬åœ°ICE Agentéœ€è¦é€šè¿‡ä¿¡å·æœåŠ¡å™¨å‘é€ä¿¡æ¯åˆ°å…¶ä»–ç«¯æ—¶
+    // ä¼šè§¦å‘icecandidateäº‹ä»¶å›è°ƒ
     pc.onicecandidate = function(event){
         if (event.candidate) {
             sendMessage({ 'candidate': event.candidate });
         }
     };
  
-    // Èç¹ûÓÃ»§ÊÇµÚ¶ş¸ö½øÈëµÄÈË£¬¾ÍÔÚnegotiationneeded ÊÂ¼şºó´´½¨sdp
+    // å¦‚æœç”¨æˆ·æ˜¯ç¬¬äºŒä¸ªè¿›å…¥çš„äººï¼Œå°±åœ¨negotiationneeded äº‹ä»¶ååˆ›å»ºsdp
     if (isOfferer) {
-        // onnegotiationneeded ÔÚÒªÇósesssionĞ­ÉÌÊ±·¢Éú
+        // onnegotiationneeded åœ¨è¦æ±‚sesssionåå•†æ—¶å‘ç”Ÿ
         pc.onnegotiationneeded = function() {
-            // ´´½¨±¾µØsdpÃèÊö SDP (Session Description Protocol) sessionÃèÊöĞ­Òé
+            // åˆ›å»ºæœ¬åœ°sdpæè¿° SDP (Session Description Protocol) sessionæè¿°åè®®
             pc.createOffer().then(localDescCreated).catch(onError);
         };
     }
  
-    // µ±Ô¶³ÌÊı¾İÁ÷µ½´ïÊ±£¬½«Êı¾İÁ÷×°ÔØµ½videoÖĞ
+    // å½“è¿œç¨‹æ•°æ®æµåˆ°è¾¾æ—¶ï¼Œå°†æ•°æ®æµè£…è½½åˆ°videoä¸­
     pc.onaddstream = function(event){
         remoteVideo.srcObject = event.stream;
     };
  
-    // »ñÈ¡±¾µØÃ½ÌåÁ÷
+    // è·å–æœ¬åœ°åª’ä½“æµ
     navigator.mediaDevices.getUserMedia({
         audio: true,
         video: true,
     }).then( function(stream) {
-        // ½«±¾µØ²¶»ñµÄÊÓÆµÁ÷×°ÔØµ½±¾µØvideoÖĞ
+        // å°†æœ¬åœ°æ•è·çš„è§†é¢‘æµè£…è½½åˆ°æœ¬åœ°videoä¸­
         localVideo.srcObject = stream;
  
-        // ½«±¾µØÁ÷¼ÓÈëRTCPeerConnection ÊµÀıÖĞ ·¢ËÍµ½ÆäËû¶Ë
+        // å°†æœ¬åœ°æµåŠ å…¥RTCPeerConnection å®ä¾‹ä¸­ å‘é€åˆ°å…¶ä»–ç«¯
         pc.addStream(stream);
     }, onError);
  
-    // ´ÓScaledrone¼àÌıĞÅÁîÊı¾İ
+    // ä»Scaledroneç›‘å¬ä¿¡ä»¤æ•°æ®
     room.on('data', function(message, client){
-        // ÏûÏ¢ÊÇÎÒ×Ô¼º·¢ËÍµÄ£¬Ôò²»´¦Àí
+        // æ¶ˆæ¯æ˜¯æˆ‘è‡ªå·±å‘é€çš„ï¼Œåˆ™ä¸å¤„ç†
         if (client.id === drone.clientId) {
             return;
         }
  
         if (message.sdp) {
-            // ÉèÖÃÔ¶³Ìsdp, ÔÚoffer »òÕß answerºó
+            // è®¾ç½®è¿œç¨‹sdp, åœ¨offer æˆ–è€… answerå
             pc.setRemoteDescription(new RTCSessionDescription(message.sdp), function(){
-                // µ±ÊÕµ½offer ºó¾Í½ÓÌı
+                // å½“æ”¶åˆ°offer åå°±æ¥å¬
                 if (pc.remoteDescription.type === 'offer') {
                     pc.createAnswer().then(localDescCreated).catch(onError);
                 }
             }, onError);
         }
         else if (message.candidate) {
-            // Ôö¼ÓĞÂµÄ ICE canidatet µ½±¾µØµÄÁ´½ÓÖĞ
+            // å¢åŠ æ–°çš„ ICE canidatet åˆ°æœ¬åœ°çš„é“¾æ¥ä¸­
             pc.addIceCandidate(
                 new RTCIceCandidate(message.candidate), onSuccess, onError
             );
